@@ -2,7 +2,7 @@ import customtkinter
 from functools import partial
 import math
 
-MAX_MOD_DISPLAY = 5
+MAX_MOD_DISPLAY = 6
 SPINBOX_PADX = 10
 SPINBOX_PADY = 10
 
@@ -45,17 +45,17 @@ class ModificationFrame(customtkinter.CTkFrame):
         self.sumVar = customtkinter.IntVar()
         self.sumVar.set(0)
         self.sumEntry = customtkinter.CTkEntry(self, width=50)
-        self.sumEntry.grid(row=9, column=0)
+        self.sumEntry.grid(row=MAX_MOD_DISPLAY+4, column=0)
 
         # Next and Previous Button setup
         self.prevButton = customtkinter.CTkButton(self, text='^', command=self.showPrevious)
         self.prevButton.grid(row=0, column=0, sticky='ns')
         self.nextButton = customtkinter.CTkButton(self, text='v', command=self.showNext)
-        self.nextButton.grid(row=min(len(elements), 5)+1, column=0, sticky='ns')
+        self.nextButton.grid(row=min(len(elements), MAX_MOD_DISPLAY)+1, column=0, sticky='ns')
 
         # Label for current items displayed
         self.rangeLabel = customtkinter.CTkLabel(self, text="", pady=10)
-        self.rangeLabel.grid(row=min(len(elements), 5)+2, column=0)
+        self.rangeLabel.grid(row=min(len(elements), MAX_MOD_DISPLAY)+2, column=0)
 
         # Complete setup of spinboxes and labels/entries
         self.loadSpinBoxes()
@@ -112,12 +112,12 @@ class ModificationFrame(customtkinter.CTkFrame):
     def updateSpinBoxVisibility(self):
         for i, spinBox in enumerate(self.spinBoxes):
             if self.currIndex <= i and i < self.currIndex + MAX_MOD_DISPLAY:
-                spinBox.grid(row=i - self.currIndex + 1, column=0, padx=10, pady=20, sticky='nsew')
+                spinBox.grid(row=i - self.currIndex + 1, column=0, padx=10, pady=10, sticky='nsew')
             else:
                 spinBox.grid_forget()
     
     def updateRangeLabel(self):
-        self.rangeLabel.configure(text=f"Ingredients {self.currIndex} to {min(self.currIndex+5, len(self.spinBoxes))} of {len(self.spinBoxes)}")
+        self.rangeLabel.configure(text=f"Ingredients {self.currIndex+1} to {min(self.currIndex+MAX_MOD_DISPLAY, len(self.spinBoxes))} of {len(self.spinBoxes)}")
 
 class SpinBoxFrame(customtkinter.CTkFrame):
     def __init__(self, master=None, text="", value=None, sum_var=None, sum_max=0, **kwargs):

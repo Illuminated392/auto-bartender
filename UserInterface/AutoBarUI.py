@@ -43,9 +43,9 @@ class AutoBarApp(customtkinter.CTk):
         self.title = customtkinter.CTkLabel(self.titleFrame, text="Placeholder")
         self.title.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
         self.title.configure(font=("Tekton Pro", 20))
-        self.titleFrame.grid(row=0, column=0, sticky="ew")
-        self.titleFrame.grid_rowconfigure(0, weight=1)
-        self.titleFrame.grid_columnconfigure(0, weight=1)
+        self.titleFrame.grid(row=0, column=0, columnspan=3, sticky="ew")
+        #self.titleFrame.grid_rowconfigure(0, weight=1)
+        #self.titleFrame.grid_columnconfigure(0, weight=1)
 
     def DisplayFrame(self, frameNum, reset, options, callback, padding=20, colCount=3):
         self.clearApp()
@@ -78,6 +78,9 @@ class AutoBarApp(customtkinter.CTk):
         self.modFrame = ModificationFrame.ModificationFrame(self, items, values, total, width=400, height=500)
         self.modFrame.grid(row=1, column=0, padx=5, pady=5, sticky='nsew')
 
+        button = customtkinter.CTkButton(self, text="Test")
+        button.grid(column=1, row=1, padx=10, pady=10, sticky='nsew')
+
     def DisplayOption3Page(self, options, callback):
         self.DisplayFrame(OPTION3, False, options, callback, colCount=4, padding=10)
 
@@ -104,7 +107,7 @@ def option1(option):
 
 def option2(option):
     global app
-    items = ["aa", "bbbbbbb", "cccc", "d", "eee", "f", "g", "h"]
+    items = ["aa", "bbbb", "cccc", "d", "eee", "f", "g", "h"]
     values = [0,0,0,0,3,0,4,6,]
     total = 20
     app.DisplayModificationPage(items, values, total)
