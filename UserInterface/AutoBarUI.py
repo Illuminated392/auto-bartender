@@ -75,7 +75,7 @@ class AutoBarApp(customtkinter.CTk):
     def DisplayModificationPage(self, items, values, total):
         self.clearApp()
 
-        self.modFrame = ModificationFrame.ModificationFrame(self, items, values, total)
+        self.modFrame = ModificationFrame.ModificationFrame(self, items, values, total, width=400, height=500)
         self.modFrame.grid(row=1, column=0, padx=5, pady=5, sticky='nsew')
 
     def DisplayOption3Page(self, options, callback):
@@ -104,8 +104,8 @@ def option1(option):
 
 def option2(option):
     global app
-    items = ["aa", "bbbbbbb", "cccc", "d", "eee", "f", "g", "h", "i", "k"]
-    values = [0,0,0,0,3,0,4,6,0,0]
+    items = ["aa", "bbbbbbb", "cccc", "d", "eee", "f", "g", "h"]
+    values = [0,0,0,0,3,0,4,6,]
     total = 20
     app.DisplayModificationPage(items, values, total)
     print("Option 2")
