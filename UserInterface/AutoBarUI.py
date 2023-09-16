@@ -28,8 +28,8 @@ class AutoBarApp(customtkinter.CTk):
         super().__init__()
 
         self.title("Auto Bartender")
-        self.geometry("600x400")
-        self.wm_attributes('-fullscreen', True)
+        self.geometry("400x600")
+        #self.wm_attributes('-fullscreen', True)
         self.optionFrames = {}
         self.titleFame = None
         self.footerFrame = None
@@ -72,6 +72,12 @@ class AutoBarApp(customtkinter.CTk):
     def DisplayHomePage(self, options, callback):
         self.DisplayFrame(HOME, False, options, callback)
 
+    def DisplayModificationPage(self, items, values, total):
+        self.clearApp()
+
+        self.modFrame = ModificationFrame.ModificationFrame(self, items, values, total)
+        self.modFrame.grid(row=1, column=0, padx=5, pady=5, sticky='nsew')
+
     def DisplayOption3Page(self, options, callback):
         self.DisplayFrame(OPTION3, False, options, callback, colCount=4, padding=10)
 
@@ -97,6 +103,11 @@ def option1(option):
     print("Option 1")
 
 def option2(option):
+    global app
+    items = ["aa", "bbbbbbb", "cccc", "d", "eee", "f", "g", "h", "i", "k"]
+    values = [0,0,0,0,3,0,4,6,0,0]
+    total = 20
+    app.DisplayModificationPage(items, values, total)
     print("Option 2")
 
 def option3(option):
@@ -133,7 +144,7 @@ options = [
 
 app = AutoBarApp()
 
-app.DisplayHomePage(options, option3)
+app.DisplayHomePage(options, option2)
 
 
 app.mainloop()

@@ -99,8 +99,8 @@ if __name__ == "__main__":
     spin_box9 = CustomSpinBox(spin_box_frame, label_text="Spin Box 9:", sum_var=sum_var)
     spin_box10 = CustomSpinBox(spin_box_frame, label_text="Spin Box 10:", sum_var=sum_var)
 
-    spin_boxes = [spin_box1, spin_box2, spin_box3, spin_box4, spin_box5, spin_box6, spin_box7, spin_box8, spin_box9, spin_box10]
-
+#    spin_boxes = [spin_box1, spin_box2, spin_box3, spin_box4, spin_box5, spin_box6, spin_box7, spin_box8, spin_box9, spin_box10]
+    spin_boxes = [spin_box1, spin_box2, spin_box3]
     current_index = 0  # Current index to keep track of the displayed spin boxes
 
     # Create buttons to show previous and next spin boxes
