@@ -1,0 +1,55 @@
+Drink,Popularity Weight ( 1-10),Vodka,Gin,Bourbon,Light Rum,Tequila,Peach Schnapps,Triple Sec,Amarretto,Lemon Juice,Simple Syrup,Unsweet Cranberry Juice,Lime Juice,Bitters,Ginger Beer,Orange Juice,Coca Cola,Club Soda,Pineapple Juice,Grenadine,Cherry,Lime,Mint Leaves
+Moscow Mule,10,2,,,,,,,,,0.5,,1,3,3,,,,,,,1,1
+Sex on the Beach,10,2,,,,,1,,,,,4,,,,4,,,,,1,,
+Long Island Iced Tea,8,1,1,,1,1,,1,,2,1,,,,,,1,,,,1,,
+Mai Tai,8,,,,1,,,1,1,,,,2,,,,,,6,,1,1,
+Mojito,5,,,,2,,,,,,1,,1,,,,,4,,,,,1
+Margarita,3,,,,,2,,1,,2,2,,,,,,,,,,,,
+Vodka Cranberry,3,1,,,,,,,,,1,3,0.5,,,,,,,,,1,
+Gin Gin Mule,3,,2,,,,,,,,0.5,,0.5,,2,,,,,,,1,1
+Rum & Coke,3,,,,2,,,,,,,,0.5,,,,5,,,,1,1,
+Lemon Drop,,,1,,,,,2,,2,1,,,,,,,,,,1,,
+Cosmopolitan,,2,,,,,,1,,,,3,,,,,,,,,1,1,
+Cuba Libre,,,,,2,,,,,,,,,,,,8,,,,1,,
+Zombie,,,,,2,,,1,,1,1,,,,,,,4,2,,,,
+Tom Collins,,,1,,,,,,,1,1,,,,,,,,,,,,
+Gimlet,,,1,,,,,,,,,,2,,,,,,,,1,1,
+Gin Ricky,,,1,,,,,,,,,,0.25,,,,,3,,,1,1,
+Old Fashioned,,,,2,,,,,,,1,,,2,,,,,,,1,,
+Whiskey Sour,,,,2,,,,,,0.5,0.5,,,2,,,,,,,1,,
+Screwdriver,,2,,,,,1,,,,,,,,,3,,,,,1,,
+Daiquiri,,,,,2,,,,,,0.5,,,,,,,,,,,1,
+Cape Cod,,2,,,,,,,,,1,3,,,,,,,,,,,
+Tequila Sunrise,,,,,,1,,,,,,,,,,3,,,,0.5,1,,
+Gin and Tonic,,,1,,,,,,,,,,,,,,,2,,,1,1,
+Woo Woo,,1,,,,,,0.5,,,1,4,,,,,,,,,,1,
+Amaretto Sour,,,,1,,,,,3,2,0.5,,,2,,,,,,,,,
+Italian Margarita,,,,,,2,,,1,,,,0.5,,,1.5,,,,,,1,
+Amaretto Stone Sour,,,,,,,,,1.5,0.5,0.5,,0.5,,,1.5,,,,,,,
+Alabama Slammer,,,1,1,,,,,1,,,,,,,3,,,,,,,
+Bay Breeze,,1,,,,,,,,,1,3,,,,,,,1.5,,1,1,
+Cranberry Margarita,,,,,,1.5,,1,,,0.5,1.5,0.5,,,,,,,,,,
+Cranberry Mule,,2,,,,,,,,,,2,0.5,,3,,,,,,,,
+Madras Cocktail,,1.5,,,,,,,,,0.5,2,,,,1.5,,,,,,1,
+Rum Cranberry,,,,,1.5,,,0.5,,,1,1.5,0.5,,,,,,,,,1,
+Mexican Mule,,,,,,2,,,,,,,0.5,,4,,,,,,,1,
+Kentucky Mule,,,,2,,,,,,,,,0.5,,4,,,,,,,1,1
+Fuzzy Navel,,,,,,,3,,,,,,,,,6,,,,,,,1
+Peach Martini,,1,,,,,1,0.5,,,,,0.5,,,1,,,,,,,
+Georgia Peach,,,,,1,,1,,,,,1,,,,2,,,,,1,,1
+Royal Flush,,,,2,,,1,,,,1,1.5,,,,,,2,,,,,
+Peach Daiquiri,,,,,1.5,,1,,,,0.5,,1,,,1,,,,,,,
+Whiskey & Coke,,,,2,,,,,,,,,,,,,5,,,,1,,
+Vodka & Coke,,2,,,,,,,,,,,0.5,,,,4,,,,1,1,
+Dracula's Kiss,,1,,,,,,,,,,,,,,,5,,,0.5,,,
+Pineapple Margarita,,,,,,1.5,,1,,,,,1,,,,,,2,,,1,
+Pineapple Mojito,,,,,2,,,,,,1,,1,,,,,3,1,,,1,1
+Pineapple Vodka,,2,,,,,,,,,,,0.5,,,,,,3,0.5,,,
+Pineapple Rum,,,,,2,,,,,,0.5,,1,,,,,,1.5,0.5,2,2,1
+Malibu Sunset,,,,,2,,,,,,,,,,,2,,,2,0.5,1,,
+Singapore Sling,,,1,0.5,,,,0.5,,,,,0.5,2,,,,0.5,2,0.5,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+Total Usages,,15,9,8,13,7,7,12,5,8,24,12,23,5,5,12,6,7,9,6,20,21,8
