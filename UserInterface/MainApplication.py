@@ -1,8 +1,8 @@
 import customtkinter
 
 #Local Imports
-import OptionFrame as optFrm
-import ModificationFrame as modFrm
+from .OptionsFrame import OptionsFrame as optFrm
+from .ModificationFrame import ModificationFrame as modFrm
 
 # Setup theme of the application
 customtkinter.set_appearance_mode("dark")
@@ -19,8 +19,8 @@ HOME = 0
 '''
     Input: Main Options - List of options that will have a designated option page
 '''
-class MainApp(customtkinter.CTk, mainOptions=[]):
-    def __init__(self):
+class MainApp(customtkinter.CTk):
+    def __init__(self, mainOptions=[]):
         super().__init()
 
         #Setup window attributes

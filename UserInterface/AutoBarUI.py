@@ -44,8 +44,8 @@ class AutoBarApp(customtkinter.CTk):
         self.title.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
         self.title.configure(font=("Tekton Pro", 20))
         self.titleFrame.grid(row=0, column=0, columnspan=3, sticky="ew")
-        #self.titleFrame.grid_rowconfigure(0, weight=1)
-        #self.titleFrame.grid_columnconfigure(0, weight=1)
+        self.titleFrame.grid_rowconfigure(0, weight=1)
+        self.titleFrame.grid_columnconfigure(0, weight=1)
 
     def DisplayFrame(self, frameNum, reset, options, callback, padding=20, colCount=3):
         self.clearApp()
