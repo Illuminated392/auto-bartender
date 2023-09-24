@@ -2,6 +2,8 @@ import customtkinter
 from functools import partial
 import math
 
+BUTTON_FONT = ("Tekon Pro", 24)
+
 '''
 Options Button Frame Class:
     The class below defines the Frame and buttons for the options frame of the
@@ -81,7 +83,7 @@ class OptionsFrame(customtkinter.CTkFrame):
         self.buttons = []
         for option in self.options:
             assert type(option) == str
-            button = customtkinter.CTkButton(self, text=option, command=partial(self.callback, option))
+            button = customtkinter.CTkButton(self, text=option, font=BUTTON_FONT, command=partial(self.callback, option))
             self.buttons.append(button)
         self.formatButtons()
 

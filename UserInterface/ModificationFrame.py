@@ -24,8 +24,8 @@ class ModificationFrame(customtkinter.CTkFrame):
         assert len(elements) == len(values)
         for i in range(len(elements)):
             assert str == type(elements[i])
-            assert int == type(values[i])
-        assert int == type(total)
+            assert float == type(values[i])
+        assert float == type(total)
 
         # Invoke init of super
         super().__init__(master, **kwargs)
@@ -98,7 +98,7 @@ class ModificationFrame(customtkinter.CTkFrame):
             spinBox.updateButtonStates()
 
     def showNext(self):
-        if self.currIndex < len(self.spinBoxes) - 1:
+        if self.currIndex < len(self.spinBoxes) - 1 and len(self.elements) > MAX_MOD_DISPLAY:
             self.currIndex += min(MAX_MOD_DISPLAY, len(self.elements) - (self.currIndex+MAX_MOD_DISPLAY))
             self.updateSpinBoxVisibility()
             self.updateRangeLabel()

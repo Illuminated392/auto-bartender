@@ -108,8 +108,10 @@ def option1(option):
 def option2(option):
     global app
     items = ["aa", "bbbb", "cccc", "d", "eee", "f", "g", "h"]
-    values = [0,0,0,0,3,0,4,6,]
-    total = 20
+    values = [0.0,0.0,0.0,0.0,3.0,0.0,4.0,6.0,]
+    #items = ["a", "b", "c"]
+    #values = [1.0,2.0, 3.0]
+    total = 20.0
     app.DisplayModificationPage(items, values, total)
     print("Option 2")
 
