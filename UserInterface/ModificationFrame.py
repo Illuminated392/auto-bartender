@@ -42,7 +42,7 @@ class ModificationFrame(customtkinter.CTkFrame):
         self.currIndex = 0
         
         # Ingredient Sum Variables
-        self.sumVar = customtkinter.IntVar()
+        self.sumVar = customtkinter.DoubleVar()
         self.sumVar.set(0)
         self.sumEntry = customtkinter.CTkEntry(self, width=50)
         self.sumEntry.grid(row=MAX_MOD_DISPLAY+4, column=0)
@@ -122,7 +122,7 @@ class ModificationFrame(customtkinter.CTkFrame):
 class SpinBoxFrame(customtkinter.CTkFrame):
     def __init__(self, master=None, text="", value=None, sum_var=None, sum_max=0, **kwargs):
         super().__init__(master, **kwargs)
-        self.value = customtkinter.IntVar(self, value)
+        self.value = customtkinter.DoubleVar(self, value)
         self.sumVar = sum_var
         self.sumMax = sum_max
         self.text = text
@@ -136,7 +136,7 @@ class SpinBoxFrame(customtkinter.CTkFrame):
         self.decButton.grid(row=0, column=1, padx=SPINBOX_PADX, pady=SPINBOX_PADY, sticky='nsew')
         self.decButton.configure(state="normal" if value > 0 else "disabled")
         
-        self.valueEntry = customtkinter.CTkEntry(self, textvariable=self.value, width=30, state='readonly')
+        self.valueEntry = customtkinter.CTkEntry(self, textvariable=self.value, width=80, state='readonly')
         self.valueEntry.grid(row=0, column=2, padx=SPINBOX_PADX, pady=SPINBOX_PADY, sticky='nsew')
 
         self.incButton = customtkinter.CTkButton(self, text='+', width=30, command=self.increment)
@@ -153,13 +153,13 @@ class SpinBoxFrame(customtkinter.CTkFrame):
 
     def increment(self):
         current_val = self.value.get()
-        self.value.set(current_val+1)
-        self.sumVar.set(self.sumVar.get()+1)
+        self.value.set(current_val+0.5)
+        self.sumVar.set(self.sumVar.get()+0.5)
 
     def decrement(self):
         currVal = self.value.get()
-        self.value.set(currVal-1)
-        self.sumVar.set(self.sumVar.get()-1)
+        self.value.set(currVal-0.5)
+        self.sumVar.set(self.sumVar.get()-0.5)
         self.updateButtonStates()
 
     def updateButtonStates(self):

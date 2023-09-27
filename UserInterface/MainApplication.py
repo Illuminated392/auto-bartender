@@ -46,10 +46,12 @@ class MainApp(customtkinter.CTk):
         title = customtkinter.CTkLabel(self.titleFrame, text=APP_TITLE)
         title.grid(row=0, column=0, padx=10, pady=10, sticky='ew')
         title.configure(font=(FONT_STYLE, 28))
+        self.homeButton = customtkinter.CTkButton(self.titleFrame, text="Home", command=self.showHome)
+        self.homeButton.grid(row=0, column=1, padx=10, pady=10, sticky='ns')
         self.titleFrame.grid(row=0, column=0, columnspan=5, sticky='ew')
         self.titleFrame.grid_rowconfigure(0, weight=1)
-        self.titleFrame.grid_columnconfigure(0, weight=1)
-        
+        self.titleFrame.grid_columnconfigure(0, weight=7)
+        self.titleFrame.grid_columnconfigure(1, weight=1)
         #UPDATE: Add button to return home whenever
         self.homeButton = None
 
@@ -78,6 +80,11 @@ class MainApp(customtkinter.CTk):
     def DisplayHomePage(self, options, callback):
         self.isModify = False
         self.DisplayOptionFrame(HOME, options=options, callback=callback)
+
+    def showHome(self):
+        if self.activeFrame != HOME or self.isModify:
+            self.clearApp()
+            self.DisplayOptionFrame(HOME)
 
     def DisplayModificationPage(self, items, values, total, orderCallback):
         self.clearApp()
@@ -108,6 +115,7 @@ class MainApp(customtkinter.CTk):
         try:
             frameName = self.frameNames[self.activeFrame]
             self.optionFrames[frameName].grid_remove()
+            self.modFrame.grid_remove()
         except:
             pass
 
