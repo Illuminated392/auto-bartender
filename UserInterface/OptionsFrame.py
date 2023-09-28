@@ -83,7 +83,8 @@ class OptionsFrame(customtkinter.CTkFrame):
         self.buttons = []
         for option in self.options:
             assert type(option) == str
-            button = customtkinter.CTkButton(self, text=option, font=BUTTON_FONT, command=partial(self.callback, option))
+            button = customtkinter.CTkButton(self, text=option,  font=BUTTON_FONT, command=partial(self.callback, option))
+            button._text_label.configure(wraplength=150)
             self.buttons.append(button)
         self.formatButtons()
 

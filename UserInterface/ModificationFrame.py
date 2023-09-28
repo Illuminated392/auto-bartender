@@ -6,6 +6,8 @@ MAX_MOD_DISPLAY = 6
 SPINBOX_PADX = 10
 SPINBOX_PADY = 10
 
+FONT_FAMILY = ("Tekon Pro", 20)
+
 '''
     Modifications Frame Class:
         The following class defines the modifications frame, enabling a user to
@@ -44,17 +46,18 @@ class ModificationFrame(customtkinter.CTkFrame):
         # Ingredient Sum Variables
         self.sumVar = customtkinter.DoubleVar()
         self.sumVar.set(0)
-        self.sumEntry = customtkinter.CTkEntry(self, width=50)
-        self.sumEntry.grid(row=MAX_MOD_DISPLAY+4, column=0)
+        self.sumEntry = customtkinter.CTkEntry(self, font=FONT_FAMILY, width=100)
+        self.sumEntry.grid(row=min(len(elements), MAX_MOD_DISPLAY)+3, column=0)
 
         # Next and Previous Button setup
-        self.prevButton = customtkinter.CTkButton(self, text='^', command=self.showPrevious)
-        self.prevButton.grid(row=0, column=0, sticky='ns')
-        self.nextButton = customtkinter.CTkButton(self, text='v', command=self.showNext)
-        self.nextButton.grid(row=min(len(elements), MAX_MOD_DISPLAY)+1, column=0, sticky='ns')
+        self.prevButton = customtkinter.CTkButton(self, text='^', font=FONT_FAMILY, command=self.showPrevious)
+        self.nextButton = customtkinter.CTkButton(self, text='v', font=FONT_FAMILY, command=self.showNext)
+        if (len(elements) > MAX_MOD_DISPLAY):
+            self.nextButton.grid(row=min(len(elements), MAX_MOD_DISPLAY)+1, column=0, sticky='ns')
+            self.prevButton.grid(row=0, column=0, sticky='ns')
 
         # Label for current items displayed
-        self.rangeLabel = customtkinter.CTkLabel(self, text="", pady=10)
+        self.rangeLabel = customtkinter.CTkLabel(self, font=FONT_FAMILY, text="", pady=10)
         self.rangeLabel.grid(row=min(len(elements), MAX_MOD_DISPLAY)+2, column=0)
 
         # Complete setup of spinboxes and labels/entries
@@ -69,8 +72,8 @@ class ModificationFrame(customtkinter.CTkFrame):
         
         rowTuple = tuple([i for i in range(8)])
         self.grid_rowconfigure(rowTuple, weight=1)
-        self.grid_columnconfigure(0, weight=5)
-        self.grid_columnconfigure(1, weight=1)
+
+        self.grid_columnconfigure(0, weight=1)
 
         for ele in self.elements:
             spinBox = SpinBoxFrame(self, ele, self.elements[ele], self.sumVar, self.total)
@@ -81,6 +84,8 @@ class ModificationFrame(customtkinter.CTkFrame):
         self.updateSpinBoxVisibility()
 
     def getElementValues(self):
+        for spinBox in self.spinBoxes:
+            self.elements[spinBox.getText()] = spinBox.getValue()
         return self.elements
 
     def resetDefaultValues(self):
@@ -112,7 +117,7 @@ class ModificationFrame(customtkinter.CTkFrame):
     def updateSpinBoxVisibility(self):
         for i, spinBox in enumerate(self.spinBoxes):
             if self.currIndex <= i and i < self.currIndex + MAX_MOD_DISPLAY:
-                spinBox.grid(row=i - self.currIndex + 1, column=0, padx=10, pady=10, sticky='nsew')
+                spinBox.grid(row=i - self.currIndex + 1, column=0, padx=10, pady=10, sticky='nswe')
             else:
                 spinBox.grid_forget()
     
@@ -129,17 +134,17 @@ class SpinBoxFrame(customtkinter.CTkFrame):
 
         self.grid_columnconfigure(0, weight=3)
 
-        self.label = customtkinter.CTkLabel(self, text=self.text, width=self.winfo_width()/2, anchor='w')
+        self.label = customtkinter.CTkLabel(self, text=self.text, font=FONT_FAMILY,width=self.winfo_width()/2, anchor='w')
         self.label.grid(row=0, column=0, padx=SPINBOX_PADX, pady=SPINBOX_PADY, sticky='nsew')
 
-        self.decButton = customtkinter.CTkButton(self, text='-', width=30, command=self.decrement)
+        self.decButton = customtkinter.CTkButton(self, text='-', font=FONT_FAMILY, width=30, command=self.decrement)
         self.decButton.grid(row=0, column=1, padx=SPINBOX_PADX, pady=SPINBOX_PADY, sticky='nsew')
         self.decButton.configure(state="normal" if value > 0 else "disabled")
         
-        self.valueEntry = customtkinter.CTkEntry(self, textvariable=self.value, width=80, state='readonly')
+        self.valueEntry = customtkinter.CTkEntry(self, textvariable=self.value, font=FONT_FAMILY, width=80, state='readonly')
         self.valueEntry.grid(row=0, column=2, padx=SPINBOX_PADX, pady=SPINBOX_PADY, sticky='nsew')
 
-        self.incButton = customtkinter.CTkButton(self, text='+', width=30, command=self.increment)
+        self.incButton = customtkinter.CTkButton(self, text='+', font=FONT_FAMILY, width=30, command=self.increment)
         self.incButton.grid(row=0, column=3, padx=SPINBOX_PADX, pady=SPINBOX_PADY, sticky='nsew')
 
     def getValue(self):

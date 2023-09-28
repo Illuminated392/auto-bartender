@@ -71,7 +71,7 @@ def drinkSelectionCallback(drink):
 def orderCallback(modFrame):
     
     if modFrame != None:
-        pass
+        print(modFrame.getElementValues())
         #Get items from modframe
         #Submit order
     app.DisplayHomePage(CATEGORIES, homeScreenCallback)
@@ -81,7 +81,7 @@ def cancelOrderCallback():
 
 def startupUI():    
     global app
-    app = UserInterface.MainApp(CATEGORIES)
+    app = UserInterface.MainApp(orderCallback, CATEGORIES)
 
     app.DisplayHomePage(CATEGORIES, homeScreenCallback)
     
