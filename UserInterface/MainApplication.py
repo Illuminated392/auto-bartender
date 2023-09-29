@@ -24,7 +24,7 @@ class MainApp(customtkinter.CTk):
     # Value to hold whether modification menu is currently displayed
     isModify = False
 
-    def __init__(self, orderCallback, mainOptions=[]):
+    def __init__(self, orderCallback, randomCallback, mainOptions=[]):
         super().__init__()
 
         #Setup window attributes
@@ -42,14 +42,15 @@ class MainApp(customtkinter.CTk):
         self.frameNames = ["Home"]
         [self.frameNames.append(opt) for opt in mainOptions]
         self.activeFrame = -1
+        self.modFrame = None
     
         #Setup Title
         self.titleFrame = customtkinter.CTkFrame(self)
-        title = customtkinter.CTkLabel(self.titleFrame, text=APP_TITLE)
-        title.grid(row=0, column=1, padx=10, pady=10, sticky='ew')
-        title.configure(font=(FONT_STYLE, 28))
+        self.title = customtkinter.CTkLabel(self.titleFrame, text=APP_TITLE)
+        self.title.grid(row=0, column=1, padx=10, pady=10, sticky='ew')
+        self.title.configure(font=(FONT_STYLE, 28))
         self.homeButton = customtkinter.CTkButton(self.titleFrame, text="Home", command=self.showHome)
-        self.fillerButton = customtkinter.CTkButton(self.titleFrame, text="Random")
+        self.fillerButton = customtkinter.CTkButton(self.titleFrame, text="Random", command=randomCallback)
         self.homeButton.grid(row=0, column=2, padx=10, pady=10, sticky='ns')
         self.fillerButton.grid(row=0, column=0, padx=10, pady=10, sticky='ns')
         self.titleFrame.grid(row=0, column=0, columnspan=6, sticky='ew')
@@ -69,32 +70,36 @@ class MainApp(customtkinter.CTk):
         # Clearing the saved frame to generate a new one
         if reset:
             self.optionFrames.pop(self.frameNames[frameNum])
-        
     
         if self.activeFrame != frameNum or self.isModify:
             frameName = self.frameNames[frameNum]
+            if frameNum != HOME:
+                self.title.configure(text=frameName)
+            else:
+                self.title.configure(text=APP_TITLE)
             try:
                 self.optionFrames[frameName].grid(row=1, column=0, padx=5, pady=5, sticky='nswe')
             except KeyError:
                 newFrame = optFrm(self, options, callback, colCount, padding=padding)
                 newFrame.grid(row=1, column=0, columnspan=3, padx=5, pady=5, sticky='nswe')
                 self.optionFrames[frameName] = newFrame
-
             self.activeFrame = frameNum
                 
-    def DisplayHomePage(self, options, callback):
-        self.isModify = False
+    def DisplayHomePage(self, options=None, callback=None): 
+        self.title.configure(text=APP_TITLE)
         self.DisplayOptionFrame(HOME, options=options, callback=callback)
+        self.isModify = False
 
     def showHome(self):
         if self.activeFrame != HOME or self.isModify:
-            self.clearApp()
-            self.isModify = False
             self.DisplayOptionFrame(HOME)
+            self.title.configure(text=APP_TITLE)
+            self.isModify = False
 
-    def DisplayModificationPage(self, items, values, total, orderCallback):
+    def DisplayModificationPage(self, drink, items, values, total, orderCallback):
         self.clearApp()
         self.isModify = True
+        self.title.configure(text=drink)
         self.modFrame = modFrm(self, items, values, total)
         self.modFrame.grid(row=1, column=1, padx=5, pady=5, sticky='nswe')
    
@@ -112,13 +117,14 @@ class MainApp(customtkinter.CTk):
         
     def clearApp(self):
         try:
+            if self.modFrame != None:
+                self.modFrame.grid_remove()
+            self.backButton.grid_remove()
+            self.orderButton.grid_remove()
             frameName = self.frameNames[self.activeFrame]
             self.optionFrames[frameName].grid_remove()
-            self.modFrame.grid_remove()
-            self.backButton.grid_remove()
-        except:
-            pass
-
+        except Exception as e:
+            print(f"Clean app exception: {e}")
     def prevDrinkSelection(self):
         self.clearApp()
         self.DisplayOptionFrame(self.activeFrame)

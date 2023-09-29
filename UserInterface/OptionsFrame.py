@@ -2,7 +2,7 @@ import customtkinter
 from functools import partial
 import math
 
-BUTTON_FONT = ("Tekon Pro", 24)
+BUTTON_FONT = ("Tekon Pro", 22)
 
 '''
 Options Button Frame Class:
@@ -84,7 +84,7 @@ class OptionsFrame(customtkinter.CTkFrame):
         for option in self.options:
             assert type(option) == str
             button = customtkinter.CTkButton(self, text=option,  font=BUTTON_FONT, command=partial(self.callback, option))
-            button._text_label.configure(wraplength=150)
+            button._text_label.configure(wraplength=160)
             self.buttons.append(button)
         self.formatButtons()
 

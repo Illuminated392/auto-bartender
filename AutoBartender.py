@@ -1,4 +1,5 @@
 import sys, os
+import random
 
 #local imports
 import UserInterface
@@ -11,6 +12,7 @@ CATEGORIES = ["Vodka", "Gin", "Bourbon", "Light Rum", "Tequila"]
 drinkClassDict = {}
 drinkDict = {}
 drinkLookupDict = {}
+drinkList = []
 
 app = None
 
@@ -32,7 +34,7 @@ def loadDrinkLookupDict(drinkDict):
     for entry in drinkDict:
         key = drinkDict[entry]["Drink"]
         drinkLookupDict[key] = entry
-
+        drinkList.append(key)
 
 def homeScreenCallback(selection):
     global app
@@ -65,7 +67,7 @@ def drinkSelectionCallback(drink):
             items.append(item)
             values.append(value)
              
-    app.DisplayModificationPage(items, values, 20.0, orderCallback)
+    app.DisplayModificationPage(drink, items, values, 20.0, orderCallback)
 
 
 def orderCallback(modFrame):
@@ -74,14 +76,21 @@ def orderCallback(modFrame):
         print(modFrame.getElementValues())
         #Get items from modframe
         #Submit order
-    app.DisplayHomePage(CATEGORIES, homeScreenCallback)
+    app.DisplayHomePage()
+
+def randomDrink():
+    global drinkList
+    randSel = random.randrange(0, len(drinkList))
+
+    drinkSelectionCallback(drinkList[randSel])
+
 
 def cancelOrderCallback():
     pass
 
 def startupUI():    
     global app
-    app = UserInterface.MainApp(orderCallback, CATEGORIES)
+    app = UserInterface.MainApp(orderCallback, randomDrink, CATEGORIES)
 
     app.DisplayHomePage(CATEGORIES, homeScreenCallback)
     
