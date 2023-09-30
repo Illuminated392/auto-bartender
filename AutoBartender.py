@@ -1,6 +1,6 @@
 import sys, os
 import random
-
+import time
 #local imports
 import UserInterface
 from DataImporter.CsvImporter import csvImporter 
@@ -76,17 +76,16 @@ def orderCallback(modFrame):
         print(modFrame.getElementValues())
         #Get items from modframe
         #Submit order
-    app.DisplayHomePage()
+
+    app.startProgressBar()
 
 def randomDrink():
-    global drinkList
+    global drinkList, app
+    #REMOVE
+    app.stopProgressBar()
     randSel = random.randrange(0, len(drinkList))
 
     drinkSelectionCallback(drinkList[randSel])
-
-
-def cancelOrderCallback():
-    pass
 
 def startupUI():    
     global app

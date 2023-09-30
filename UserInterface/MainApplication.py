@@ -43,7 +43,9 @@ class MainApp(customtkinter.CTk):
         [self.frameNames.append(opt) for opt in mainOptions]
         self.activeFrame = -1
         self.modFrame = None
-    
+        self.isOrdered = False
+        self.progressBar = customtkinter.CTkProgressBar(self, height=30, mode="indeterminate", indeterminate_speed=0.3)
+        
         #Setup Title
         self.titleFrame = customtkinter.CTkFrame(self)
         self.title = customtkinter.CTkLabel(self.titleFrame, text=APP_TITLE)
@@ -91,12 +93,15 @@ class MainApp(customtkinter.CTk):
         self.isModify = False
 
     def showHome(self):
-        if self.activeFrame != HOME or self.isModify:
+        if (self.activeFrame != HOME or self.isModify) and not self.isOrdered:
             self.DisplayOptionFrame(HOME)
             self.title.configure(text=APP_TITLE)
             self.isModify = False
 
     def DisplayModificationPage(self, drink, items, values, total, orderCallback):
+        # Short circut if drink is currently being made
+        if self.isOrdered:
+            return
         self.clearApp()
         self.isModify = True
         self.title.configure(text=drink)
@@ -117,15 +122,32 @@ class MainApp(customtkinter.CTk):
         
     def clearApp(self):
         try:
+            self.progressBar.grid_remove()
             if self.modFrame != None:
                 self.modFrame.grid_remove()
             self.backButton.grid_remove()
             self.orderButton.grid_remove()
-            frameName = self.frameNames[self.activeFrame]
-            self.optionFrames[frameName].grid_remove()
+            if self.activeFrame != -1:
+                frameName = self.frameNames[self.activeFrame]
+                self.optionFrames[frameName].grid_remove()
         except Exception as e:
             print(f"Clean app exception: {e}")
+    
     def prevDrinkSelection(self):
         self.clearApp()
         self.DisplayOptionFrame(self.activeFrame)
 
+    def startProgressBar(self):
+        self.isOrdered = True
+        self.clearApp()
+        drinkName = self.title.cget("text")
+        self.title.configure(text=f"Preparing Drink: {drinkName}")
+        self.progressBar.set(0)
+        self.progressBar.grid(row=1, column=0, columnspan=3, padx=50, pady=50, sticky='ew')
+        self.progressBar.start()
+
+    def stopProgressBar(self):
+        self.isOrdered = False
+        self.progressBar.stop()
+        self.progressBar.grid_remove()
+        self.showHome()
