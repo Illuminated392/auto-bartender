@@ -81,8 +81,6 @@ def orderCallback(modFrame):
 
 def randomDrink():
     global drinkList, app
-    #REMOVE
-    app.stopProgressBar()
     randSel = random.randrange(0, len(drinkList))
 
     drinkSelectionCallback(drinkList[randSel])

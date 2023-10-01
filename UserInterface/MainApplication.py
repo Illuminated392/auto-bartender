@@ -93,6 +93,7 @@ class MainApp(customtkinter.CTk):
         self.isModify = False
 
     def showHome(self):
+        self.stopProgressBar()
         if (self.activeFrame != HOME or self.isModify) and not self.isOrdered:
             self.DisplayOptionFrame(HOME)
             self.title.configure(text=APP_TITLE)
@@ -150,4 +151,4 @@ class MainApp(customtkinter.CTk):
         self.isOrdered = False
         self.progressBar.stop()
         self.progressBar.grid_remove()
-        self.showHome()
+        #self.showHome()
